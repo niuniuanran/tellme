@@ -1,6 +1,8 @@
 # Tell Me
 
-A Chrome extension to ask answers based on selected text.
+A Chrome extension to ask questions based on selected text.
+
+![](./screenshot.png)
 
 How to run:
 
