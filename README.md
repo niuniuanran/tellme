@@ -9,7 +9,7 @@ How to run:
 1. Build the extension:
    
    ```sh
-   $ cd tellme
+   $ cd extension
    $ npm install
    $ npm run build
    ```
