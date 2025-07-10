@@ -7,7 +7,7 @@ A Chrome extension that lets you ask questions about selected text using AI. Rig
 ## Features
 
 - **Tell me...**: Opens a prompt where you can ask custom questions about selected text
-- **Tell me right away**: Instantly summarizes selected text
+- **summarize paragraph**: Instantly summarizes selected text
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ The server will run on `http://localhost:8000`
 2. **Right-click** to open context menu
 3. Choose either:
    - **"Tell me..."** - Opens side panel with input prompt for custom questions
-   - **"Tell me right away"** - Instantly processes with default question
+   - **"summarize paragraph"** - Instantly processes with default question
 
 ## File Structure
 

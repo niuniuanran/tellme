@@ -6,8 +6,8 @@ function setupContextMenu() {
   });
 
   chrome.contextMenus.create({
-    id: "tell-me-right-away",
-    title: "Tell me right away",
+    id: "summarize-paragraph",
+    title: "summarize paragraph",
     contexts: ["selection"],
   });
 }
@@ -25,8 +25,8 @@ chrome.contextMenus.onClicked.addListener((data, tab) => {
     // Always set context first
     await chrome.storage.session.set({ context: data.selectionText });
 
-    if (data.menuItemId === "tell-me-right-away") {
-      // Set flag to auto-execute when side panel opens, with timestamp for freshness
+    if (data.menuItemId === "summarize-paragraph") {
+      // Set flag to auto-execute when side panel opens for "summarize paragraph"
       await chrome.storage.session.set({
         autoExecute: true,
         timestamp: Date.now(),

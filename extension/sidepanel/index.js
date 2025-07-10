@@ -91,7 +91,7 @@ async function executeQuery(question) {
   }
 }
 
-// Function to execute the "Tell me right away" request
+// Function to execute the "summarize paragraph" request
 async function executeRightAway() {
   const defaultQuestion =
     "Summarize this part of my book. If it mentions any Figures, tell me what I should look for in the figure.";
@@ -102,7 +102,7 @@ async function executeRightAway() {
   await executeQuery(defaultQuestion);
 }
 
-// Check if this was triggered by "Tell me right away" on initial load
+// Check if this was triggered by "summarize paragraph" on initial load
 chrome.storage.session.get(["autoExecute"], async (result) => {
   const { autoExecute } = result;
 
