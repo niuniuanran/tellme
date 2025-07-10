@@ -94,7 +94,7 @@ async function executeQuery(question) {
 // Function to execute the "summarize paragraph" request
 async function executeRightAway() {
   const defaultQuestion =
-    "Summarize this part of my book. If it mentions any Figures, tell me what I should look for in the figure.";
+    "Summarize this part of my book within 3 sentences. If it mentions any Figures, tell me what I should look for in the figure.";
 
   // Populate the input prompt with the default question
   inputPrompt.value = defaultQuestion;

@@ -38,6 +38,10 @@ and answer that based on the provided CONTEXT. If there is no relevant informati
 you should say "This information is not provided in the context". Try to give your
 answer as succinct as possible.
 
+If the CONTEXT mentions any Figures, Charts, Tables, or Images that you cannot read, tell the user what to look for in the figure. If no such information is mentioned in CONTEXT, you also don't need to mention anything about figures.
+
+Keep your answer concise and to the point. If there's something that's important to know, make sure to highlight it.
+
 CONTEXT:
 {question.context}
 
