@@ -1,23 +1,58 @@
-import DOMPurify from 'dompurify';
-import { marked } from 'marked';
+import DOMPurify from "dompurify";
+import { marked } from "marked";
 
-const inputPrompt = document.body.querySelector('#input-prompt');
-const elementResponse = document.body.querySelector('#response');
-const elementLoading = document.body.querySelector('#loading');
-const elementError = document.body.querySelector('#error');
+const inputPrompt = document.body.querySelector("#input-prompt");
+const elementResponse = document.body.querySelector("#response");
+const elementLoading = document.body.querySelector("#loading");
+const elementError = document.body.querySelector("#error");
 
-inputPrompt.addEventListener('keypress', async (e) => {
-  if (e.key === 'Enter') {
+// Check if this was triggered by "Tell me right away"
+chrome.storage.session.get(
+  ["context", "autoExecute"],
+  async ({ context, autoExecute }) => {
+    if (autoExecute) {
+      // Clear the autoExecute flag
+      chrome.storage.session.remove("autoExecute");
+
+      // Execute immediately for "Tell me right away"
+      showLoading();
+      try {
+        if (context) {
+          const response = await fetch("http://localhost:8000/answer", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              context: context,
+              question:
+                "Summarize this and tell me what I should expect to look for next for better understanding",
+            }),
+          });
+          const data = await response.json();
+          showResponse(data.answer);
+        } else {
+          showError("No context found");
+        }
+      } catch (e) {
+        showError(e);
+      }
+    }
+  }
+);
+
+inputPrompt.addEventListener("keypress", async (e) => {
+  if (e.key === "Enter") {
     const prompt = inputPrompt.value.trim();
     showLoading();
     try {
-      chrome.storage.session.get('context', async ({ context }) => {
-        const response = await fetch('http://localhost:8000/answer', {
-          method: 'POST',
+      chrome.storage.session.get("context", async ({ context }) => {
+        const response = await fetch("http://localhost:8000/answer", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({ context: context, question: prompt })
+          body: JSON.stringify({ context: context, question: prompt }),
         });
         const data = await response.json();
         showResponse(data.answer);
@@ -48,9 +83,9 @@ function showError(error) {
 }
 
 function show(element) {
-  element.removeAttribute('hidden');
+  element.removeAttribute("hidden");
 }
 
 function hide(element) {
-  element.setAttribute('hidden', '');
+  element.setAttribute("hidden", "");
 }
